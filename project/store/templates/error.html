@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Transaction Error{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='error.css') }}">
+{% endblock %}
+{% block content %}
+    <h1>Transaction Failed!</h1>
+    
+    {% if message %}
+        <p >Details:</p>
+        <div>
+            <strong>{{ message }}</strong>
+        </div>
+    {% else %}
+        <p>An unknown error occurred while processing your request.</p>
+    {% endif %}
+
+    <p >
+        <a href="{{ url_for('orders') }}">Go back to Order List</a>
+    </p>
+{% endblock %}

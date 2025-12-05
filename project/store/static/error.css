@@ -1,0 +1,22 @@
+
+.error-container {
+    text-align: center;
+    border: 1px solid #001f3f;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+h1 {
+    color: #001f3f;
+    border-bottom: none;
+}
+
+.error-details {
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 20px 0;
+    color: #333;
+    font-family: monospace;
+    border-left: 4px solid #333;
+}

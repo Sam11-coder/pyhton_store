@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Order #{{ order.id }}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='order_detail.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="order-container">
+    
+    <div class="header-section">
+        <h1 class="order-id">Order #{{ order.id }}</h1>
+        <div class="divider"></div>
+        
+        <p class="order-meta">
+            <strong>Customer:</strong>
+            <a href="{{ url_for('customer_id', id=order.customer_id) }}">
+                {{ order.customer.name }}
+            </a>
+        </p>
+        <p class="order-meta">
+            <strong>Created:</strong> {{ order.created.strftime('%b %d, %Y %I:%M %p') }}
+        </p>
+    </div>
+
+    {% if order.completed %}
+        <div class="status-box complete">
+            <h2>Status: COMPLETED</h2>
+            <p>Finalized: {{ order.completed.strftime('%b %d, %Y %I:%M %p') }}</p>
+            <p class="final-row">Final Amount: <span class="amount-highlight">${{ order.amount }}</span></p>
+        </div>
+    {% else %}
+        <div class="status-box pending">
+            <h2>Status: PENDING</h2>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="order-items-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Unit Price</th>
+                        <th>Qty Ordered</th>
+                        <th>Stock Available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.items %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>${{ item.product.price }}</td>
+                        <td>{{ item.quantity }}</td>
+
+                        {% if item.product.available < item.quantity %}
+                            <td class="stock-error">
+                                {{ item.product.available }} (Insufficient)
+                            </td>
+                        {% else %}
+                            <td>{{ item.product.available }}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="order-summary">
+            <h3>Estimated Total: <span class="estimated-total">${{ order.estimate() }}</span></h3>
+
+            <form method="POST" action="{{ url_for('complete_order', id=order.id) }}">
+                <button type="submit" class="complete-button">
+                    Complete Order
+                </button>
+            </form>
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

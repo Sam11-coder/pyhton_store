@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='home_page.css') }}">
+{% endblock %}
+
+/* 2. Use the new classes */
+{% block content %}
+<div class="home-container content-card">
+        <h1>Welcome to my Store</h1>
+        
+        <p class="intro-text">
+            Its still not done yet !!!.
+        </p>
+        
+        <div class="action-buttons">
+            <a href="{{ url_for('product') }}" class="btn btn-products">Browse Products</a>
+            <a href="{{ url_for('customer') }}" class="btn btn-customers">View Customers</a>
+        </div>
+    </div>
+{% endblock %}

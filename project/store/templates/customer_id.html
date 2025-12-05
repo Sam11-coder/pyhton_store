@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='customer_id.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="customer-container">
+
+    <h1>Customer Profile: {{ customer.name }}</h1>
+    <p style="text-align: center; color: #ccc;"><strong>Phone:</strong> {{ customer.phone }}</p>
+
+    <div class="divider"></div>
+    
+    <h2 style="text-align: center;">Order History</h2>
+
+    <h3>Pending Orders ({{ customer.get_pending_orders() | length }})</h3>
+    
+    {% if customer.get_pending_orders() %}
+        <ul class="customer-list">
+        {% for order in customer.get_pending_orders() %}
+            <li class="customer-item">
+                <a href="{{ url_for('order_detail', id=order.id) }}">
+                    Order #{{ order.id }} 
+                    <span style="font-size: 0.9rem; color: #aaa; display:block;">
+                        (Created: {{ order.created.strftime('%b %d, %Y %I:%M %p') }})
+                    </span>
+                </a> 
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p style="text-align: center; color: #777;">No orders currently pending.</p>
+    {% endif %}
+
+    <br>
+
+    <h3>Completed Orders ({{ customer.get_completed_orders() | length }})</h3>
+    
+    {% if customer.get_completed_orders() %}
+        <ul class="customer-list">
+        {% for order in customer.get_completed_orders() %}
+            <li class="customer-item">
+                <a href="{{ url_for('order_detail', id=order.id) }}">
+                    Order #{{ order.id }}
+                    <span style="font-size: 0.9rem; color: #aaa; display:block;">
+                        (Final Amount: ${{ order.amount }})
+                    </span>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p style="text-align: center; color: #777;">No completed orders found.</p>
+    {% endif %}
+
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="{{ url_for('customer') }}" style="color: var(--primary); text-decoration: none;">← Back to Customer List</a>
+    </div>
+
+</div>
+
+{% endblock %}

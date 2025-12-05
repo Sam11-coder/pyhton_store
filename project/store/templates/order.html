@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}All Store Orders{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='orders.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="order-container">
+    <h1>All Customer Orders</h1>
+    <div class="divider"></div>
+    
+    <ul class="order-list">
+        {% for order in orders %}
+        <li class="order-item">
+            <a href="{{ url_for('order_detail', id=order.id) }}">
+                <span class="order-number">Order #{{ order.id }}</span>
+                <span class="order-customer">by {{ order.customer.name }}</span>
+                <span class="order-date">{{ order.created.strftime('%b %d, %Y') }}</span>
+                
+                {% if order.completed %}
+                    <span class="status-badge complete">Completed</span>
+                {% else %}
+                    <span class="status-badge pending">Pending</span>
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

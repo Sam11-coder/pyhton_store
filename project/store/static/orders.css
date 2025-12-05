@@ -1,0 +1,111 @@
+:root {
+    --primary: #ff3366;
+    --text: #ffffff;
+    --bg-dark: #000000;
+}
+
+.order-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.order-container h1 {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--text);
+    margin-bottom: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.divider {
+    width: 80px;
+    height: 4px;
+    background: var(--primary);
+    margin: 0 auto 40px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.order-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 15px;
+}
+
+.order-item {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.order-item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    text-decoration: none;
+    color: var(--text);
+    width: 100%;
+}
+
+.order-item:hover {
+    border-color: var(--primary);
+    transform: translateX(10px);
+    background: rgba(255, 51, 102, 0.1);
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.2);
+}
+
+.order-number {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.order-customer {
+    font-weight: 600;
+    color: #ddd;
+}
+
+.order-date {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.status-badge {
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-badge.complete {
+    background: rgba(0, 255, 128, 0.2);
+    color: #00ff80;
+    border: 1px solid rgba(0, 255, 128, 0.4);
+}
+
+.status-badge.pending {
+    background: rgba(255, 153, 51, 0.2);
+    color: #ff9933;
+    border: 1px solid rgba(255, 153, 51, 0.4);
+}
+
+@media (max-width: 600px) {
+    .order-item a {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
