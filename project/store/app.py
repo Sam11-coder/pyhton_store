@@ -3,11 +3,13 @@ from pathlib import Path
 from db import db
 from models import Product,Category,Customer,Order,ProductOrder
 from sqlalchemy import select
+import os
 
 app = Flask(__name__)
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///store.db"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-change-me")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///store.db")
 
 app.instance_path = Path(".").resolve()
 
