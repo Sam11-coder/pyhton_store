@@ -1,13 +1,13 @@
 # Flask Store
 
-A simple e-commerce admin app built with Flask. It lets you manage products, customers, and orders — with inventory tracking baked in.
+A simple e-commerce admin app built with Flask. It lets you manage products, customers, and orders  with inventory tracking baked in.
 
 ## What it does
 
-- **Products & Categories** — Browse the catalog, filter by category.
-- **Customers** — View customer profiles and their order history (pending and completed).
-- **Orders** — See order details, complete orders with a single click. The app checks stock before completing a sale and rolls back if there's not enough inventory.
-- **Data Seeding** — A management script generates realistic test data so you can try things out immediately.
+- **Products & Categories**  Browse the catalog, filter by category.
+- **Customers**  View customer profiles and their order history (pending and completed).
+- **Orders**  See order details, complete orders with a single click. The app checks stock before completing a sale and rolls back if there's not enough inventory.
+- **Data Seeding**  A management script generates realistic test data so you can try things out immediately.
 
 ## Tech
 
