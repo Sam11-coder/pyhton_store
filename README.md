@@ -1,137 +1,70 @@
-# Flask E-Commerce Store
+# Flask Store
 
-A full-stack e-commerce administration application built with Python and Flask. This system manages products, customers, and processes orders with inventory tracking.
+A simple e-commerce admin app built with Flask. It lets you manage products, customers, and orders — with inventory tracking baked in.
 
-## 🚀 Features
+## What it does
 
-* **Product Management:** Browse products and categories.
-* **Customer Profiles:** View customer details and their full transaction history.
-* **Order Processing:**
-    * View detailed order manifests.
-    * **Transactional Logic:** "Complete Order" button that deducts inventory and finalizes the sale.
-    * **Stock Safety:** Prevents transactions if inventory is insufficient (custom error handling).
-* **Database:** Complex SQL relationships (Many-to-Many) using SQLAlchemy and SQLite.
-* **Management Script:** CLI tool to generate realistic test data.
+- **Products & Categories** — Browse the catalog, filter by category.
+- **Customers** — View customer profiles and their order history (pending and completed).
+- **Orders** — See order details, complete orders with a single click. The app checks stock before completing a sale and rolls back if there's not enough inventory.
+- **Data Seeding** — A management script generates realistic test data so you can try things out immediately.
 
-## 🛠️ Technology Stack
+## Tech
 
-* **Backend:** Python, Flask
-* **Database:** SQLite, SQLAlchemy ORM
-* **Frontend:** HTML5, Jinja2 Templates, CSS3
+- Python / Flask
+- SQLAlchemy ORM with SQLite
+- Jinja2 templates, plain CSS
 
-## ⚙️ Setup & Installation
+## Getting Started
 
-1.  **Clone the project:**
-    ```bash
-    git clone <your-repo-url>
-    cd store
-    ```
+### With Docker (recommended)
 
-2.  **Create and Activate a Virtual Environment:**
-    ```bash
-    # Windows
-    python -m venv .venv
-    .venv\Scripts\activate
+```bash
+docker compose up --build
+```
 
-    # Mac/Linux
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
+The app will be available at `http://localhost:8888`. The database gets seeded automatically on first run.
 
-3.  **Install Dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *(Note: If you don't have a requirements file yet, install manually: `pip install flask sqlalchemy flask-sqlalchemy`)*
+### Without Docker
 
-4.  **Initialize the Database:**
-    Run the management script to wipe the DB and generate fresh data:
-    ```bash
-    python manage.py
-    ```
+1. Clone the repo and `cd` into `project/store`:
+   ```bash
+   git clone <your-repo-url>
+   cd project/store
+   ```
 
-## 🏃‍♂️ How to Run
+2. Set up a virtual environment:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate   # on Windows: .venv\Scripts\activate
+   ```
 
-1.  Start the Flask server:
-    ```bash
-    python app.py
-    ```
-2.  Open your browser and navigate to:
-    `http://127.0.0.1:8888`
+3. Install dependencies:
+   ```bash
+   pip install flask sqlalchemy flask-sqlalchemy
+   ```
 
-## 📂 Project Structure
+4. Seed the database:
+   ```bash
+   python manage.py
+   ```
 
-* `app.py` - Main application entry point and routes.
-* `models.py` - Database classes (User, Product, Order) and business logic.
-* `manage.py` - Script for database creation and data seeding.
-* `templates/` - HTML files (Jinja2).
-* `static/` - CSS files and images.
-* `instance/store.db` - The SQLite database file.# Flask E-Commerce Store
+5. Run the app:
+   ```bash
+   python app.py
+   ```
 
-A full-stack e-commerce administration application built with Python and Flask. This system manages products, customers, and processes orders with inventory tracking.
+6. Open `http://127.0.0.1:8888` in your browser.
 
-## 🚀 Features
+## Project Structure
 
-* **Product Management:** Browse products and categories.
-* **Customer Profiles:** View customer details and their full transaction history.
-* **Order Processing:**
-    * View detailed order manifests.
-    * **Transactional Logic:** "Complete Order" button that deducts inventory and finalizes the sale.
-    * **Stock Safety:** Prevents transactions if inventory is insufficient (custom error handling).
-* **Database:** Complex SQL relationships (Many-to-Many) using SQLAlchemy and SQLite.
-* **Management Script:** CLI tool to generate realistic test data.
-
-## 🛠️ Technology Stack
-
-* **Backend:** Python, Flask
-* **Database:** SQLite, SQLAlchemy ORM
-* **Frontend:** HTML5, Jinja2 Templates, CSS3
-
-## ⚙️ Setup & Installation
-
-1.  **Clone the project:**
-    ```bash
-    git clone <your-repo-url>
-    cd store
-    ```
-
-2.  **Create and Activate a Virtual Environment:**
-    ```bash
-    # Windows
-    python -m venv .venv
-    .venv\Scripts\activate
-
-    # Mac/Linux
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
-
-3.  **Install Dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *(Note: If you don't have a requirements file yet, install manually: `pip install flask sqlalchemy flask-sqlalchemy`)*
-
-4.  **Initialize the Database:**
-    Run the management script to wipe the DB and generate fresh data:
-    ```bash
-    python manage.py
-    ```
-
-## 🏃‍♂️ How to Run
-
-1.  Start the Flask server:
-    ```bash
-    python app.py
-    ```
-2.  Open your browser and navigate to:
-    `http://127.0.0.1:8888`
-
-## 📂 Project Structure
-
-* `app.py` - Main application entry point and routes.
-* `models.py` - Database classes (User, Product, Order) and business logic.
-* `manage.py` - Script for database creation and data seeding.
-* `templates/` - HTML files (Jinja2).
-* `static/` - CSS files and images.
-* `instance/store.db` - The SQLite database file.
+```
+project/store/
+  app.py        — Routes and Flask app setup
+  models.py     — SQLAlchemy models and business logic
+  db.py         — Database initialization
+  manage.py     — DB seeding script
+  templates/    — Jinja2 HTML templates
+  static/       — CSS stylesheets
+  data/         — CSV seed files (products, customers)
+```
