@@ -2,6 +2,7 @@ from app import app
 from db import db
 from models import Category, Product, Customer,Order,ProductOrder
 import csv
+from pathlib import Path
 from sqlalchemy import select,func
 import random
 from random import randint
@@ -18,7 +19,8 @@ def drop_tables():
 def import_data():
     print("Importing data one sec....")
     
-    with open("/home/sameer/python_project/project/products.csv", mode="r") as file:
+    data_dir = Path(__file__).resolve().parent / "data"
+    with open(data_dir / "products.csv", mode="r") as file:
         product_reader = csv.DictReader(file)
         
         for row in product_reader:
@@ -42,7 +44,7 @@ def import_data():
             db.session.add(product_obj)
 
 
-    with open("/home/sameer/python_project/project/customers.csv", mode="r") as file:
+    with open(data_dir / "customers.csv", mode="r") as file:
         customer_reader = csv.DictReader(file)
         
         for row in customer_reader:

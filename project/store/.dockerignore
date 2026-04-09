@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.git/
+*.db
+.python-version
+uv.lock
+.gitignore
+Dockerfile
+.dockerignore
